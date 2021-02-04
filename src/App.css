@@ -16,6 +16,12 @@ h2{
     cursor: pointer;
     text-decoration: underline;
 }
+button{
+    border: none;
+    background-color: lightgray;
+    padding: 5px;
+    margin-left: 10px;
+}
 
 
 .radar-table {

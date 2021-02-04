@@ -59,8 +59,6 @@ class LineChart extends React.Component{
                     data={this.state.data} 
                     options={{ 
                         maintainAspectRatio: false,
-                        height: 400,
-                        width: 80,
                         legend: {
                             display: true,
                             labels: {
