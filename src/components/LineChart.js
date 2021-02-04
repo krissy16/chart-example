@@ -72,7 +72,7 @@ class LineChart extends React.Component{
                 <form>
                     <fieldset>
                         <label for="state">State</label>
-                        <select id="state" name="state" value={this.state.value} onChange={this.handleChange}>
+                        <select className="select-style" id="state" name="state" value={this.state.value} onChange={this.handleChange}>
                             <option value="Alabama">Alabama</option>
                             <option value="Alaska">Alaska</option>
                             <option value="Arizona">Arizona</option>
