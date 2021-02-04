@@ -3,7 +3,7 @@ import { Line } from 'react-chartjs-2'
 
 class LineChart extends React.Component{
     state={
-        states: ['California', 'Texas', 'Arkansas', 'Florida', 'New York', 'Delaware', 'Puerto Rico'],
+        states: ['California', 'Texas', 'Arkansas', 'Florida', 'New York', 'Utah'],
         data: {}
     }
     componentDidMount(){
@@ -12,13 +12,16 @@ class LineChart extends React.Component{
         .then(data => this.extractData(data.data))
     }
     extractData = (data) =>{
-        console.log(data)
         const states = this.state.states
         const datasets = states.map( state => {
-            return {label: state, data: [], borderColor: "#742774"}
+            return {
+                label: state, 
+                data: [], 
+                borderColor: "rgba(75,192,192,1)",
+                fill: false
+            }
         })
         data.map(obj => {
-            //Texas, California, Arkansas, Florida, New York
             if(states.includes(obj.State)){
                 datasets.find(set => set.label === obj.State).data.unshift(obj['Average Age'])
             }
@@ -30,10 +33,23 @@ class LineChart extends React.Component{
         this.setState({data: newData})
     }
     render(){
-        console.log(this.state.data)
         return(
-            <div>
-                <Line data={this.state.data} />
+            <div className="line chart">
+                <h2>Average Age of States Over Time</h2>
+                <Line 
+                    data={this.state.data} 
+                    options={{ 
+                        maintainAspectRatio: false,
+                        height: 400,
+                        width: 80,
+                        legend: {
+                            display: true,
+                            labels: {
+                                boxWidth: 10,
+                                fontSize: 10
+                            }
+                        }
+                        }}/>
             </div>
         )
     }

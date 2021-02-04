@@ -1,8 +1,8 @@
+import React from 'react'
 import { Radar } from 'react-chartjs-2';
 
 //data gathered from https://www.fda.gov/media/77402/download
 const data = {
-//   labels: ['English', 'Math', 'History', 'Art', 'Geography', 'Science', 'P.E.'],
     labels: ['Total Fat', 'Total Carbohydrate', 'Dietary Fiber', 'Sugar', 'Protein'],
     datasets: [
         // { //cal, fat, carb, fiber, protein, sugar
@@ -24,22 +24,6 @@ const data = {
             fill: true
         }
     ]
-//   datasets: [
-//     {
-//       label: 'Sara',
-//       fill: false,
-//       data: [65, 59, 80, 81, 56, 55, 40],
-//       backgroundColor: 'rgba(153, 51, 255, 0.3)',
-//       fill: true
-//     },
-//     {
-//       label: 'Paul',
-//       fill: false,
-//       data: [90, 83, 27, 7, 75, 60, 15],
-//       backgroundColor: 'rgba(255, 51, 51, 0.3)',
-//       fill: true
-//     }
-//   ]
 };
 const options = {
   scale: {
@@ -50,12 +34,46 @@ const options = {
   }
 }
 
-function RadarChart(){
-    return(
-        <div>
-            <Radar data={data} options={options}/>
-        </div>
-    )
+class RadarChart extends React.Component{
+    state = {
+        tableView: false
+    }
+    toggleView = () =>{
+        this.setState({ tableView: !this.state.tableView })
+    }
+    render(){
+        const table = () => {
+            let headers = data.labels.map( (label, i) => <th key={i}>{label}</th>)
+            let rows = data.datasets.map((fruit, i) => {
+                let nums = fruit.data.map(num => <td>{num}</td> )
+                return(
+                <tr>
+                    <td>{fruit.label}</td>
+                    {nums}
+                </tr>)
+            })
+            return (
+                <table className="radar-table">
+                    <tbody>
+                        <tr>
+                            <th>Fruit</th>
+                            {headers}
+                        </tr>
+                        {rows}
+                    </tbody>
+                </table> 
+            )
+        }
+        return(
+            <div className="radar chart">
+                <h2>Breakdown of Avocado vs Orange</h2>
+                {this.state.tableView ? 
+                    table():
+                    <Radar data={data} options={options}/>}
+                <p onClick={this.toggleView}>Switch to {this.state.tableView ? "Graph": "Table"}</p>
+            </div>
+        )
+    }
 }
 
 export default RadarChart;
