@@ -42,30 +42,19 @@ class PieChart extends React.Component{
     }
     drillDown = (event, item) =>{
         if(!item.length || this.state.back) return
-        //console.log(item[0]['_index'])
-
-        console.log('original is')
-        console.log(originalData)
-
+        
         let newData = this.state.data
         newData.labels = drilldownData[item[0]['_index']][0]
         newData.datasets[0].data = drilldownData[item[0]['_index']][1]
         this.setState({ data: newData, back: true})
-
-        console.log('original is now')
-        console.log(originalData)
     }
     goBack = () => {
-        console.log('go back to')
-        console.log(originalData)
         this.setState({ data: JSON.parse(JSON.stringify(originalData)), back: false})
     }
     render(){
         const options = {
             'onClick' : this.drillDown
         }
-        console.log('original is')
-        console.log(originalData)
         return(
             <div className="pie chart">
                 <h2>Age of First Time Mothers</h2>

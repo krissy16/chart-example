@@ -5,12 +5,6 @@ import { Radar } from 'react-chartjs-2';
 const data = {
     labels: ['Total Fat', 'Total Carbohydrate', 'Dietary Fiber', 'Sugar', 'Protein'],
     datasets: [
-        // { //cal, fat, carb, fiber, protein, sugar
-        //     label: 'Apple',
-        //     data: [0, 34, 5, 25, 1],
-        //     backgroundColor: 'rgba(255, 0, 0, 0.3)',
-        //     fill: true
-        // },
         {
             label: 'Avocado',
             data: [4.5, 3, 1, 0, 1],
