@@ -65,13 +65,13 @@ class LineChart extends React.Component{
                             display: true,
                             labels: {
                                 boxWidth: 10,
-                                fontSize: 10
+                                fontSize: 15
                             }
                         }
                         }}/>
                 <form>
                     <fieldset>
-                        <label htmlFor="state">State</label>
+                        <label htmlFor="state">State: </label>
                         <select className="select-style" id="state" name="state" value={this.state.value} onChange={this.handleChange}>
                             <option value="Alabama">Alabama</option>
                             <option value="Alaska">Alaska</option>
